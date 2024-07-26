@@ -4,7 +4,7 @@ const RegistrationButton = () => {
   return (
     <button
       className={clsx(
-        'bg-primary h-12 px-10 rounded-xl font-bold text-white text-base hover:bg-orange-200'
+        'bg-primary h-12 px-10 rounded-xl font-bold text-white text-base hover:opacity-80 transition-opacity'
         // isLoading && 'opacity-70'
       )}
       // disabled={isLoading}

@@ -44,3 +44,11 @@ textarea {
 .app {
   @apply relative z-10 flex justify-center items-center flex-col max-w-[1440px] mx-auto sm:px-16 px-6;
 }
+
+.nav_link {
+  @apply text-primary font-normal text-base py-2 hover:text-orange-300 transition-colors;
+}
+
+.teacher_info {
+  @apply text-primary font-medium text-base;
+}

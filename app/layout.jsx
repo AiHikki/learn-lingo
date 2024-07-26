@@ -1,5 +1,6 @@
 import './globals.css';
 import Nav from '@/components/Nav';
+import NextAuthProvider from '@/components/NextAuthProvider';
 import clsx from 'clsx';
 import { Roboto } from 'next/font/google';
 
@@ -19,10 +20,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <main className={clsx('app', roboto.variable, 'font-sans')}>
-          <Nav />
-          {children}
-        </main>
+        <NextAuthProvider>
+          <main className={clsx('app', roboto.variable, 'font-sans')}>
+            <Nav />
+            {children}
+          </main>
+        </NextAuthProvider>
       </body>
     </html>
   );

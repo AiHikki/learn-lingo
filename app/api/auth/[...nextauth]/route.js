@@ -1,48 +1,46 @@
 import NextAuth from 'next-auth';
-import { FirestoreAdapter } from '@auth/firebase-adapter';
-import { cert } from 'firebase-admin/app';
 import Google from 'next-auth/providers/google';
-import Credentials from 'next-auth/providers/credentials';
+import { connectToDB } from 'lib/database';
+import User from 'models/user';
 
-export const { handlers, auth, signIn, signOut } = NextAuth({
-  adapter: FirestoreAdapter({
-    credential: cert({
-      projectId: process.env.AUTH_FIREBASE_PROJECT_ID,
-      clientEmail: process.env.AUTH_FIREBASE_CLIENT_EMAIL,
-      privateKey: process.env.AUTH_FIREBASE_PRIVATE_KEY,
-    }),
-  }),
+const handler = NextAuth({
   providers: [
     Google({
       clientId: process.env.AUTH_GOOGLE_ID,
       clientSecret: process.env.AUTH_GOOGLE_SECRET,
     }),
-    Credentials({
-      // You can specify which fields should be submitted, by adding keys to the `credentials` object.
-      // e.g. domain, username, password, 2FA token, etc.
-      credentials: {
-        username: {},
-        email: {},
-        password: {},
-      },
-      authorize: async credentials => {
-        let user = null;
+  ],
+  callbacks: {
+    async signIn({ profile }) {
+      try {
+        await connectToDB();
 
-        // logic to salt and hash password
-        const pwHash = saltAndHashPassword(credentials.password);
+        // check if a user already exists
+        const userExists = await User.findOne({ email: profile.email });
 
-        // logic to verify if user exists
-        user = await getUserFromDb(credentials.email, pwHash);
-
-        if (!user) {
-          // No user found, so this is their first attempt to login
-          // meaning this is also the place you could do registration
-          throw new Error('User not found.');
+        // if not, create a new user
+        if (!userExists) {
+          await User.create({
+            email: profile.email,
+            name: profile.name,
+            image: profile.picture,
+          });
         }
 
-        // return user object with the their profile data
-        return user;
-      },
-    }),
-  ],
+        return true;
+      } catch (error) {
+        console.error(error);
+        return false;
+      }
+    },
+    async session({ session }) {
+      const sessionUser = User.findOne({ email: session.user.email });
+
+      session.user.id = sessionUser._id.toString();
+
+      return session;
+    },
+  },
 });
+
+export { handler as GET, handler as POST };

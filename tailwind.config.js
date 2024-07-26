@@ -13,6 +13,7 @@ module.exports = {
       colors: {
         primary: '#121417',
         secondary: '#8A8A89',
+        'snow-white': '#F8F8F8',
         orange: {
           100: '#FBE9BA',
           200: '#FFDC86',
@@ -34,7 +35,10 @@ module.exports = {
           400: '#E0A39A',
         },
       },
+      backgroundImage: {
+        border: '/assets/images/border.png',
+      },
     },
   },
-  plugins: [],
+  plugins: [require('tailwindcss-border-image')],
 };
