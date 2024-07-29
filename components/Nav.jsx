@@ -7,7 +7,13 @@ import RegistrationButton from './RegistrationButton';
 import { useSession } from 'next-auth/react';
 
 const Nav = () => {
-  const session = useSession();
+  const { data: session } = useSession();
+
+  console.log(session);
+
+  const logIn = () => {};
+
+  const signUp = () => {};
 
   return (
     <nav className="w-full px-32 mb-[30px] mt-5 flex justify-between items-center">
@@ -34,8 +40,8 @@ const Nav = () => {
       </ul>
 
       <div className="flex items-center gap-4">
-        <LoginButton />
-        <RegistrationButton />
+        <LoginButton handleClick={logIn} />
+        <RegistrationButton handleClick={signUp} />
       </div>
     </nav>
   );

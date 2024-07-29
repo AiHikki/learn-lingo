@@ -2,12 +2,20 @@
 
 import CustomButton from '@/components/CustomButton';
 import FeaturesItem from '@/components/FeaturesItem';
-import TeacherCard from '@/components/TeacherCard';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 const Home = () => {
   const router = useRouter();
+  const pathname = usePathname();
+
+  useEffect(() => {
+    if (pathname === '/') {
+      document.body.classList.remove('bg-snow-white');
+      document.body.classList.add('bg-white');
+    }
+  }, [pathname]);
 
   const features = [
     {
@@ -29,7 +37,7 @@ const Home = () => {
   ];
 
   return (
-    <div>
+    <div className="bg-white">
       <div className="flex gap-6 mb-6">
         <div className="bg-snow-white rounded-3xl px-16 py-[98px]">
           <h1 className="font-medium text-5xl leading-tight text-primary mb-8">
@@ -63,8 +71,6 @@ const Home = () => {
           <FeaturesItem key={i} title={title} subtitle={subtitle} />
         ))}
       </ul>
-
-      <TeacherCard />
     </div>
   );
 };

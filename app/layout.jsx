@@ -19,12 +19,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>
+      <body className={clsx(roboto.variable, 'font-sans')}>
         <NextAuthProvider>
-          <main className={clsx('app', roboto.variable, 'font-sans')}>
-            <Nav />
-            {children}
-          </main>
+          <Nav />
+          <main className="app ">{children}</main>
         </NextAuthProvider>
       </body>
     </html>

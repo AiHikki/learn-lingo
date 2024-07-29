@@ -16,11 +16,6 @@ ul {
   list-style-type: none;
 }
 
-body {
-  background-color: #fff;
-  /* font-family: 'Roboto', sans-serif; */
-}
-
 /* button,
 input,
 textarea {
@@ -42,7 +37,7 @@ textarea {
 } */
 
 .app {
-  @apply relative z-10 flex justify-center items-center flex-col max-w-[1440px] mx-auto sm:px-16 px-6;
+  @apply relative z-10 flex justify-center items-center flex-col max-w-[1440px] mx-auto sm:px-16 px-6 pb-8;
 }
 
 .nav_link {
@@ -51,4 +46,8 @@ textarea {
 
 .teacher_info {
   @apply text-primary font-medium text-base;
+}
+
+.form_input {
+  @apply w-full border border-primary border-opacity-10 rounded-xl text-primary placeholder:text-opacity-70 font-normal text-base hover:border-orange-300 focus:border-orange-300 transition-colors;
 }

@@ -4,6 +4,7 @@ const reviewSchema = new Schema({
   reviewer_name: { type: String, required: true },
   reviewer_rating: { type: Number, required: true },
   comment: { type: String, required: true },
+  // avatar_url: { type: String },
 });
 
 const teacherSchema = new Schema(

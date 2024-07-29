@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 
-const CustomButton = ({ otherStyles, handleClick, isLoading, children }) => {
+const CustomButton = ({ otherStyles, handleClick, isLoading, children, type = 'button' }) => {
   return (
     <button
       onClick={handleClick}
@@ -10,6 +10,7 @@ const CustomButton = ({ otherStyles, handleClick, isLoading, children }) => {
         otherStyles
       )}
       disabled={isLoading}
+      type={type}
     >
       {children}
     </button>
