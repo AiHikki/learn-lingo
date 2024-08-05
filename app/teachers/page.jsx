@@ -28,7 +28,7 @@ const Teachers = () => {
         setTeachers(prevTeachers => [...prevTeachers, ...teachers]);
         setTotalTeachers(totalCount);
       } catch (error) {
-        console.error('Error loading teachers: ', error);
+        console.error('Error loading teachers: ', error.message);
       } finally {
         setLoading(false);
       }

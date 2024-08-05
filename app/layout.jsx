@@ -23,6 +23,7 @@ export default function RootLayout({ children }) {
         <NextAuthProvider>
           <Nav />
           <main className="app ">{children}</main>
+          <div id="modals"></div>
         </NextAuthProvider>
       </body>
     </html>

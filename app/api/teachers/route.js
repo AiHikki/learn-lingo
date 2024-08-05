@@ -1,5 +1,5 @@
-import { connectToDB } from 'lib/database';
-import Teacher from 'models/teacher';
+import { connectDB } from 'lib/mongodb';
+import Teacher from 'models/Teacher';
 
 export const GET = async request => {
   const { searchParams } = new URL(request.url);
@@ -9,10 +9,10 @@ export const GET = async request => {
   const startIndex = (page - 1) * limit;
 
   try {
-    await connectToDB();
+    await connectDB();
 
-    const teachers = await Teacher.find().skip(startIndex).limit(limit);
     const totalCount = await Teacher.countDocuments();
+    const teachers = await Teacher.find().skip(startIndex).limit(limit);
 
     return new Response(JSON.stringify({ teachers, totalCount }), { status: 200 });
   } catch (error) {

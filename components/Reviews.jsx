@@ -1,31 +1,8 @@
 import clsx from 'clsx';
-import TailwindColor from 'lib/tailwindRandomColor';
 import Image from 'next/image';
 import { FaStar } from 'react-icons/fa';
 
-const colorOptions = {
-  colors: [
-    'red',
-    'amber',
-    'yellow',
-    'lime',
-    'green',
-    'blue',
-    'violet',
-    'purple',
-    'fuchsia',
-    'pink',
-    'rose',
-  ],
-  range: [3, 7], // Between 100 and 400,
-  prefix: 'bg', // Can be 'bg', 'text', etc.
-};
-
 const Reviews = ({ reviews, containerStyles }) => {
-  const randomColor = new TailwindColor(colorOptions).pick();
-
-  console.log(randomColor);
-
   return (
     <ul className={clsx('flex flex-col gap-8', containerStyles)}>
       {reviews.map(({ comment, reviewer_rating, reviewer_name, avatar_url }, i) => (
@@ -45,7 +22,7 @@ const Reviews = ({ reviews, containerStyles }) => {
                 <div
                   className={clsx(
                     'w-11 h-11 rounded-full flex justify-center items-center font-medium text-xl',
-                    randomColor.toString()
+                    'bg-green-400'
                   )}
                 >
                   {reviewer_name[0]}

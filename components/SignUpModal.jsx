@@ -1,8 +1,8 @@
 import Modal from 'react-modal';
-import LoginForm from './LoginForm';
 import { IoClose } from 'react-icons/io5';
+import SignUpForm from './SignUpForm';
 
-const LoginModal = ({ isOpen, closeModal }) => {
+const SignUpModal = ({ isOpen, closeModal }) => {
   return (
     <Modal
       isOpen={isOpen}
@@ -28,17 +28,17 @@ const LoginModal = ({ isOpen, closeModal }) => {
         <IoClose size={32} color="#121417" />
       </button>
       <div className="mb-10">
-        <h2 className="text-primary font-medium text-[40px] mb-5">Log In</h2>
+        <h2 className="text-primary font-medium text-[40px] mb-5">Registration</h2>
 
         <p className="text-primary text-opacity-80 text-base font-normal">
-          Welcome back! Please enter your credentials to access your account and continue your
-          search for an teacher.
+          Thank you for your interest in our platform! In order to register, we need some
+          information. Please provide us with the following information.
         </p>
       </div>
 
-      <LoginForm closeModal={closeModal} />
+      <SignUpForm closeModal={closeModal} />
     </Modal>
   );
 };
 
-export default LoginModal;
+export default SignUpModal;
