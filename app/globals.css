@@ -68,3 +68,7 @@ textarea {
 .ReactModal__Overlay--before-close {
   opacity: 0;
 }
+
+.radio_btn {
+  @apply text-primary text-opacity-20 peer-checked:text-orange-300 transition-colors;
+}

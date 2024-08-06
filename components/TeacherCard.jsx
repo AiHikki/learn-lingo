@@ -6,6 +6,10 @@ import ProficiencyLevel from './ProficiencyLevel';
 import { useState } from 'react';
 import Reviews from './Reviews';
 import CustomButton from './CustomButton';
+import BookLessonModal from './BookLessonModal';
+import { useSession } from 'next-auth/react';
+import LoginModal from './LoginModal';
+import SignUpModal from './SignUpModal';
 
 const TeacherCard = ({
   teacher: {
@@ -23,11 +27,11 @@ const TeacherCard = ({
     experience,
   },
 }) => {
+  const { status } = useSession();
   const [readMore, setReadMore] = useState(false);
-
-  const openModal = () => {
-    // Add open modal logic
-  };
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [loginIsOpen, setLoginIsOpen] = useState(false);
+  const [signUpIsOpen, setSignUpIsOpen] = useState(false);
 
   return (
     <li className="flex gap-12 bg-white p-6 max-w-[1184px] rounded-3xl">
@@ -112,11 +116,33 @@ const TeacherCard = ({
         </ul>
 
         {readMore && (
-          <CustomButton handleClick={openModal} otherStyles="w-[232px] mt-8">
+          <CustomButton
+            handleClick={() =>
+              status === 'authenticated' ? setModalIsOpen(true) : setLoginIsOpen(true)
+            }
+            otherStyles="w-[232px] mt-8"
+          >
             Book trial lesson
           </CustomButton>
         )}
       </div>
+
+      <BookLessonModal
+        teacherName={`${name} ${surname}`}
+        teacherAvatar={avatar_url}
+        isOpen={modalIsOpen}
+        closeModal={() => setModalIsOpen(false)}
+      />
+      <LoginModal
+        isOpen={loginIsOpen}
+        closeModal={() => setLoginIsOpen(false)}
+        openSignUpModal={() => setSignUpIsOpen(true)}
+      />
+      <SignUpModal
+        isOpen={signUpIsOpen}
+        closeModal={() => setSignUpIsOpen(false)}
+        openLoginModal={() => setLoginIsOpen(true)}
+      />
     </li>
   );
 };

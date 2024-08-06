@@ -1,7 +1,6 @@
 import Modal from 'react-modal';
 import LoginForm from './LoginForm';
 import { IoClose } from 'react-icons/io5';
-import Link from 'next/link';
 
 const LoginModal = ({ isOpen, closeModal, openSignUpModal }) => {
   return (

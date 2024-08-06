@@ -6,7 +6,6 @@ import { FiEye } from 'react-icons/fi';
 import { FiEyeOff } from 'react-icons/fi';
 import { useState } from 'react';
 import { signIn } from 'next-auth/react';
-import { useRouter } from 'next/router';
 
 const LoginForm = ({ closeModal }) => {
   const [showPassword, setShowPassword] = useState(false);
