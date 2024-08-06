@@ -2,7 +2,7 @@ import Modal from 'react-modal';
 import { IoClose } from 'react-icons/io5';
 import SignUpForm from './SignUpForm';
 
-const SignUpModal = ({ isOpen, closeModal }) => {
+const SignUpModal = ({ isOpen, closeModal, openLoginModal }) => {
   return (
     <Modal
       isOpen={isOpen}
@@ -37,6 +37,18 @@ const SignUpModal = ({ isOpen, closeModal }) => {
       </div>
 
       <SignUpForm closeModal={closeModal} />
+
+      <button
+        onClick={() => {
+          closeModal();
+          setTimeout(() => {
+            openLoginModal();
+          }, 250);
+        }}
+        className="mt-4 text-base text-blue-500 pl-2"
+      >
+        Already have an account? Log In
+      </button>
     </Modal>
   );
 };

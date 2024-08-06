@@ -43,7 +43,7 @@ const TeacherCard = ({
         />
       </div>
       <div className="flex flex-1 flex-col justify-start">
-        <div className="flex justify-between items-start mb-8">
+        <div className="flex justify-between items-start mb-8 w-[968px]">
           <div className="flex flex-col gap-2">
             <span className="text-secondary font-medium text-base">Languages</span>
             <span className="text-primary font-medium text-2xl">

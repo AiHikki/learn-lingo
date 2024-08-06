@@ -1,6 +1,7 @@
 'use client';
 
 import CustomButton from '@/components/CustomButton';
+import Filters from '@/components/Filters';
 import TeachersList from '@/components/TeachersList';
 import { fetchTeachers } from 'lib/operations';
 import { usePathname } from 'next/navigation';
@@ -9,8 +10,9 @@ import { useEffect, useState } from 'react';
 const Teachers = () => {
   const [teachers, setTeachers] = useState([]);
   const [page, setPage] = useState(1);
-  const [totalTeachers, setTotalTeachers] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [languages, setLanguages] = useState([]);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -24,9 +26,10 @@ const Teachers = () => {
     const loadTeachers = async () => {
       try {
         setLoading(true);
-        const { teachers, totalCount } = await fetchTeachers({ page });
+        const { teachers, totalPages, languages } = await fetchTeachers({ page });
         setTeachers(prevTeachers => [...prevTeachers, ...teachers]);
-        setTotalTeachers(totalCount);
+        setTotalPages(totalPages);
+        setLanguages(languages);
       } catch (error) {
         console.error('Error loading teachers: ', error.message);
       } finally {
@@ -37,16 +40,15 @@ const Teachers = () => {
     loadTeachers();
   }, [page]);
 
-  console.log(teachers);
-
   const handleLoadMore = () => {
     setPage(prevPage => prevPage + 1);
   };
 
   return (
-    <div>
+    <div className="w-full">
+      <Filters languages={languages} />
       {teachers.length > 0 && <TeachersList teachers={teachers} />}
-      {teachers.length < totalTeachers && (
+      {page < totalPages && teachers.length > 0 && (
         <div className="mt-16 w-full flex justify-center">
           <CustomButton handleClick={handleLoadMore} otherStyles="px-12" isLoading={loading}>
             Load More

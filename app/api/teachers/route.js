@@ -12,9 +12,18 @@ export const GET = async request => {
     await connectDB();
 
     const totalCount = await Teacher.countDocuments();
+    const totalPages = Math.ceil(totalCount / limit);
     const teachers = await Teacher.find().skip(startIndex).limit(limit);
 
-    return new Response(JSON.stringify({ teachers, totalCount }), { status: 200 });
+    const languages = await Teacher.aggregate([
+      { $unwind: '$languages' },
+      { $group: { _id: '$languages' } },
+      { $sort: { _id: 1 } },
+    ]);
+
+    return new Response(JSON.stringify({ teachers, totalCount, totalPages, languages }), {
+      status: 200,
+    });
   } catch (error) {
     return new Response('Failed to fetch all teachers', { status: 500 });
   }

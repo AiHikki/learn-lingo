@@ -16,10 +16,18 @@ const Nav = () => {
 
   return (
     <>
-      <LoginModal isOpen={loginIsOpen} closeModal={() => setLoginIsOpen(false)} />
-      <SignUpModal isOpen={signUpIsOpen} closeModal={() => setSignUpIsOpen(false)} />
+      <LoginModal
+        isOpen={loginIsOpen}
+        closeModal={() => setLoginIsOpen(false)}
+        openSignUpModal={() => setSignUpIsOpen(true)}
+      />
+      <SignUpModal
+        isOpen={signUpIsOpen}
+        closeModal={() => setSignUpIsOpen(false)}
+        openLoginModal={() => setLoginIsOpen(true)}
+      />
 
-      <nav className="w-full px-32 mb-[30px] mt-5 flex justify-between items-center">
+      <nav className="w-full px-32 mb-16 mt-5 flex justify-between items-center">
         <Logo />
 
         <ul className="flex gap-7 items-center">
