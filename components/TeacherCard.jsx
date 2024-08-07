@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { FiBookOpen, FiHeart } from 'react-icons/fi';
+import { FiBookOpen } from 'react-icons/fi';
 import { FaStar } from 'react-icons/fa';
 import TeacherInfo from './TeacherInfo';
 import ProficiencyLevel from './ProficiencyLevel';
@@ -10,6 +10,8 @@ import BookLessonModal from './BookLessonModal';
 import { useSession } from 'next-auth/react';
 import LoginModal from './LoginModal';
 import SignUpModal from './SignUpModal';
+import AddToFavoritesButton from './AddToFavoritesButton';
+import { addToFavorites } from 'actions/addToFavorites';
 
 const TeacherCard = ({
   teacher: {
@@ -25,13 +27,26 @@ const TeacherCard = ({
     avatar_url,
     conditions,
     experience,
+    _id,
   },
 }) => {
-  const { status } = useSession();
+  const { status, data: session } = useSession();
   const [readMore, setReadMore] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [loginIsOpen, setLoginIsOpen] = useState(false);
   const [signUpIsOpen, setSignUpIsOpen] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  console.log(session);
+
+  const handleAddToFavorites = async () => {
+    try {
+      const addedToFavorites = await addToFavorites(session.user.email, _id);
+      setIsFavorite(addedToFavorites);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <li className="flex gap-12 bg-white p-6 max-w-[1184px] rounded-3xl">
@@ -74,11 +89,7 @@ const TeacherCard = ({
                 </span>
               </li>
             </ul>
-            <div>
-              <button className="flex items-center justify-center">
-                <FiHeart size={26} color="#121417" />
-              </button>
-            </div>
+            <AddToFavoritesButton handleClick={handleAddToFavorites} isFavorite={isFavorite} />
           </div>
         </div>
 
