@@ -37,8 +37,6 @@ const TeacherCard = ({
   const [signUpIsOpen, setSignUpIsOpen] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
 
-  console.log(session);
-
   const handleAddToFavorites = async () => {
     try {
       const addedToFavorites = await addToFavorites(session.user.email, _id);
