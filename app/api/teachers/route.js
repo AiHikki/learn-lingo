@@ -21,7 +21,7 @@ export const GET = async request => {
       { $sort: { _id: 1 } },
     ]);
 
-    return new Response(JSON.stringify({ teachers, totalCount, totalPages, languages }), {
+    return new Response(JSON.stringify({ teachers, totalPages, languages }), {
       status: 200,
     });
   } catch (error) {

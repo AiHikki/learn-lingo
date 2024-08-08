@@ -21,7 +21,6 @@ const teacherSchema = new Schema(
     lesson_info: { type: String, required: true },
     conditions: { type: [String], required: true },
     experience: { type: String, required: true },
-    liked: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   },
   {
     timestamps: true,

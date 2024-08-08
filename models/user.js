@@ -18,6 +18,7 @@ const UserSchema = new Schema(
       type: String,
       required: true,
     },
+    favorites: [{ type: Schema.Types.ObjectId, ref: 'Teacher' }],
   },
   {
     timestamps: true,

@@ -40,8 +40,12 @@ textarea {
   @apply flex justify-center items-center flex-col max-w-[1440px] mx-auto sm:px-16 px-6 pb-8;
 }
 
+.active_link_dot {
+  @apply relative after:absolute after:w-2 after:h-2 after:rounded-full after:bg-orange-300 after:left-1/2 after:translate-x-[-50%] after:bottom-[-10px];
+}
+
 .nav_link {
-  @apply text-primary font-normal text-base py-2 hover:text-orange-300 transition-colors;
+  @apply text-primary font-normal text-base py-2 hover:text-orange-300 focus:text-orange-300 transition-colors outline-none;
 }
 
 .teacher_info {
