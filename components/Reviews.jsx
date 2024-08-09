@@ -18,14 +18,8 @@ const Reviews = ({ reviews, containerStyles }) => {
                   alt="Reviewer avatar"
                 />
               ) : (
-                //! temporary
-                <div
-                  className={clsx(
-                    'w-11 h-11 rounded-full flex justify-center items-center font-medium text-xl',
-                    'bg-green-400'
-                  )}
-                >
-                  {reviewer_name[0]}
+                <div className="w-11 h-11 rounded-full flex justify-center items-center bg-orange-300 bg-opacity-20">
+                  <span className="font-medium text-xl text-orange-300">{reviewer_name[0]}</span>
                 </div>
               )}
             </div>

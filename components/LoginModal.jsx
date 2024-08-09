@@ -1,8 +1,11 @@
 import Modal from 'react-modal';
 import LoginForm from './LoginForm';
 import { IoClose } from 'react-icons/io5';
+import useBodyScroll from 'hooks/useBodyScroll';
 
 const LoginModal = ({ isOpen, closeModal, openSignUpModal }) => {
+  useBodyScroll(isOpen);
+
   return (
     <Modal
       isOpen={isOpen}

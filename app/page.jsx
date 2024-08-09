@@ -42,7 +42,7 @@ const Home = () => {
         <div className="bg-snow-white rounded-3xl px-16 py-[98px]">
           <h1 className="font-medium text-5xl leading-tight text-primary mb-8">
             Unlock your potential with the best
-            <i className="font-normal bg-orange-100 rounded-xl mx-2 px-0.5">language</i>
+            <i className="font-normal bg-orange-100 rounded-xl mx-2 px-2">language</i>
             tutors
           </h1>
           <p className="text-primary font-normal text-base mb-16">

@@ -57,15 +57,12 @@ const Nav = () => {
         {status === 'authenticated' ? (
           <div className="flex items-center gap-7">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-orange-300 flex items-center justify-center">
+              <div className="w-8 h-8 rounded-xl bg-orange-300 flex items-center justify-center">
                 <IoPerson size={20} color="#fff" />
               </div>
               <span className="font-medium text-primary text-base">{session?.user?.name}</span>
             </div>
-            <button
-              className="border border-primary border-opacity-20 rounded-full h-12 px-10 text-base font-medium text-primary hover:border-orange-300 focus:border-orange-300 transition-colors"
-              onClick={signOut}
-            >
+            <button className="log_out_btn" onClick={signOut}>
               Log Out
             </button>
           </div>

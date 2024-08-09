@@ -5,7 +5,7 @@ const CustomButton = ({ otherStyles, handleClick, isLoading, children, type = 'b
     <button
       onClick={handleClick}
       className={clsx(
-        'bg-orange-300 h-[60px] rounded-xl font-bold text-primary text-lg hover:bg-orange-200 transition-colors',
+        'bg-orange-300 h-[60px] rounded-xl font-bold text-primary text-lg hover:bg-orange-200 focus:bg-orange-200 transition-colors',
         isLoading && 'opacity-70',
         otherStyles
       )}

@@ -1,7 +1,7 @@
 import CustomSelect from './CustomSelect';
 import { formatLanguagesForSelect, levels, prices } from 'lib/data';
 
-const Filters = ({ languages }) => {
+const Filters = ({ languages, updateFilter }) => {
   const formattedLanguages = formatLanguagesForSelect(languages);
 
   return (
@@ -12,7 +12,7 @@ const Filters = ({ languages }) => {
           label="Languages"
           width="221px"
           placeholder="Language"
-          // isMulti
+          onChange={({ value }) => updateFilter('language', value)}
         />
       </li>
       <li>
@@ -21,10 +21,17 @@ const Filters = ({ languages }) => {
           label="Level of knowledge"
           width="198px"
           placeholder="Level"
+          onChange={({ value }) => updateFilter('level', value)}
         />
       </li>
       <li>
-        <CustomSelect options={prices} label="Price" width="124px" placeholder="Price" />
+        <CustomSelect
+          options={prices}
+          label="Price"
+          width="124px"
+          placeholder="Price"
+          onChange={({ value }) => updateFilter('price', value)}
+        />
       </li>
     </ul>
   );

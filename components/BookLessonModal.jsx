@@ -2,8 +2,11 @@ import Modal from 'react-modal';
 import { IoClose } from 'react-icons/io5';
 import BookLessonForm from './BookLessonForm';
 import Image from 'next/image';
+import useBodyScroll from 'hooks/useBodyScroll';
 
 const BookLessonModal = ({ isOpen, closeModal, teacherAvatar, teacherName }) => {
+  useBodyScroll(isOpen);
+
   return (
     <Modal
       isOpen={isOpen}
@@ -14,7 +17,9 @@ const BookLessonModal = ({ isOpen, closeModal, teacherAvatar, teacherName }) => 
           borderRadius: 30,
           padding: 64,
           width: 600,
-          height: 'fit-content',
+          maxHeight: '80vh',
+          height: '100%',
+          overflowY: 'auto',
           top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)',

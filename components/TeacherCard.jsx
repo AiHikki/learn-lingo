@@ -11,7 +11,6 @@ import { useSession } from 'next-auth/react';
 import LoginModal from './LoginModal';
 import SignUpModal from './SignUpModal';
 import AddToFavoritesButton from './AddToFavoritesButton';
-import { motion } from 'framer-motion';
 import { checkIfFavorite } from 'actions/checkIfFavorite';
 import { toggleFavorite } from 'actions/toggleFavorite';
 
@@ -56,12 +55,7 @@ const TeacherCard = ({
   };
 
   return (
-    <motion.li
-      className="flex gap-12 bg-white p-6 max-w-[1184px] rounded-3xl"
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-    >
+    <li className="flex gap-12 bg-white p-6 max-w-[1184px] rounded-3xl">
       <div className="w-[120px] h-[120px] border-[3px] border-orange-100 rounded-full flex items-center justify-center flex-shrink-0">
         <Image
           src={avatar_url}
@@ -166,7 +160,7 @@ const TeacherCard = ({
         closeModal={() => setSignUpIsOpen(false)}
         openLoginModal={() => setLoginIsOpen(true)}
       />
-    </motion.li>
+    </li>
   );
 };
 
