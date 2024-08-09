@@ -1,7 +1,7 @@
 'use server';
 
-import { connectDB } from 'lib/mongodb';
-import User from 'models/User';
+import { connectDB } from '@/lib/mongodb';
+import User from '@/models/User';
 
 export const toggleFavorite = async (userEmail, teacherId) => {
   try {

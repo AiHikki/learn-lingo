@@ -1,9 +1,9 @@
 'use server';
 
-import { connectDB } from 'lib/mongodb';
-import User from 'models/User';
-import Teacher from 'models/Teacher';
-import buildFilter from 'lib/buildFilter';
+import { connectDB } from '@/lib/mongodb';
+import User from '@/models/User';
+import Teacher from '@/models/Teacher';
+import buildFilter from '@/lib/buildFilter';
 
 export const GET = async request => {
   try {

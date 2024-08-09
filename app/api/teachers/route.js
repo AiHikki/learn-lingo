@@ -1,6 +1,6 @@
-import { connectDB } from 'lib/mongodb';
-import Teacher from 'models/Teacher';
-import buildFilter from 'lib/buildFilter';
+import { connectDB } from '@/lib/mongodb';
+import Teacher from '@/models/Teacher';
+import buildFilter from '@/lib/buildFilter';
 
 export const GET = async request => {
   const { searchParams } = new URL(request.url);

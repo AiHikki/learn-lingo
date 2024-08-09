@@ -1,8 +1,8 @@
 'use server';
 
 import bcrypt from 'bcryptjs';
-import { connectDB } from 'lib/mongodb';
-import User from 'models/User';
+import { connectDB } from '@/lib/mongodb';
+import User from '@/models/User';
 import { signIn } from 'next-auth/react';
 
 export const register = async values => {
