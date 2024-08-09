@@ -44,6 +44,7 @@ const SignUpForm = ({ closeModal }) => {
             placeholder="Password"
             {...register('password')}
             type={showPassword ? 'text' : 'password'}
+            autoComplete="off"
           />
           <p className="form_error">{errors.password?.message}</p>
           <button

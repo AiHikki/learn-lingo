@@ -1,6 +1,7 @@
 'use client';
 
 import CustomButton from '@/components/CustomButton';
+import EmptyState from '@/components/EmptyState';
 import Filters from '@/components/Filters';
 import TeachersList from '@/components/TeachersList';
 import { fetchFavoriteTeachers } from 'lib/operations';
@@ -67,7 +68,7 @@ const FavoriteTeachers = () => {
   return (
     <div className="w-full">
       <Filters languages={languages} updateFilter={updateFilter} />
-      {teachers.length > 0 && <TeachersList teachers={teachers} />}
+      {teachers.length > 0 ? <TeachersList teachers={teachers} /> : <EmptyState />}
       {page < totalPages && teachers.length > 0 && (
         <div className="mt-16 w-full flex justify-center">
           <CustomButton handleClick={handleLoadMore} otherStyles="px-12" isLoading={loading}>

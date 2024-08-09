@@ -1,6 +1,7 @@
 'use client';
 
 import CustomButton from '@/components/CustomButton';
+import EmptyState from '@/components/EmptyState';
 import Filters from '@/components/Filters';
 import TeachersList from '@/components/TeachersList';
 import { fetchTeachers } from 'lib/operations';
@@ -27,31 +28,10 @@ const Teachers = () => {
     }
   }, [pathname]);
 
-  // useEffect(() => {
-  //   const loadTeachers = async () => {
-  //     console.log('On filters change');
-
-  //     try {
-  //       setLoading(true);
-  //       const { teachers, totalPages, languages } = await fetchTeachers({ page, ...filters });
-  //       setTeachers(prevTeachers => [...prevTeachers, ...teachers]);
-  //       setTotalPages(totalPages);
-  //       setLanguages(languages);
-  //     } catch (error) {
-  //       console.error('Error loading teachers: ', error.message);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   loadTeachers();
-  // }, [page, filters]);
-
   useEffect(() => {
     const loadTeachers = async () => {
       try {
         setLoading(true);
-        // Reset page number and teachers list when filters change
         setPage(1);
         const { teachers, totalPages, languages } = await fetchTeachers({ page: 1, ...filters });
         setTeachers(teachers);
@@ -99,7 +79,7 @@ const Teachers = () => {
   return (
     <div className="w-full">
       <Filters languages={languages} updateFilter={updateFilter} />
-      {teachers.length > 0 && <TeachersList teachers={teachers} />}
+      {teachers.length > 0 ? <TeachersList teachers={teachers} /> : <EmptyState />}
       {page < totalPages && teachers.length > 0 && (
         <div className="mt-16 w-full flex justify-center">
           <CustomButton handleClick={handleLoadMore} otherStyles="px-12" isLoading={loading}>

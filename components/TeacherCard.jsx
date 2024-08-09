@@ -13,6 +13,7 @@ import SignUpModal from './SignUpModal';
 import AddToFavoritesButton from './AddToFavoritesButton';
 import { checkIfFavorite } from 'actions/checkIfFavorite';
 import { toggleFavorite } from 'actions/toggleFavorite';
+import { motion } from 'framer-motion';
 
 const TeacherCard = ({
   teacher: {
@@ -109,6 +110,19 @@ const TeacherCard = ({
           <TeacherInfo title="Conditions" desc={conditions.join(' ')} />
         </ul>
 
+        <motion.div
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: readMore ? 1 : 0, height: readMore ? 'auto' : 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          {readMore && (
+            <>
+              <p className="text-primary font-normal text-base mb-8">{experience}</p>
+              {reviews.length > 0 && <Reviews reviews={reviews} containerStyles="mb-8" />}
+            </>
+          )}
+        </motion.div>
+
         {!readMore && (
           <button
             onClick={() => setReadMore(true)}
@@ -116,14 +130,6 @@ const TeacherCard = ({
           >
             Read more
           </button>
-        )}
-
-        {readMore && (
-          <>
-            <p className="text-primary font-normal text-base mb-8">{experience}</p>
-
-            {reviews.length > 0 && <Reviews reviews={reviews} containerStyles="mb-8" />}
-          </>
         )}
 
         <ul className="flex gap-2">
