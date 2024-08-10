@@ -6,6 +6,7 @@ import { FiEye } from 'react-icons/fi';
 import { FiEyeOff } from 'react-icons/fi';
 import { useState } from 'react';
 import { register as signUp } from 'actions/register';
+import { signIn } from 'next-auth/react';
 
 const SignUpForm = ({ closeModal }) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -21,6 +22,16 @@ const SignUpForm = ({ closeModal }) => {
     const res = await signUp(data);
     if (res?.error) {
       alert(res.error);
+    } else {
+      const res = await signIn('credentials', {
+        email: data.email,
+        password: data.password,
+        redirect: false,
+      });
+      if (res?.error) {
+        alert(res.error);
+        closeModal();
+      }
     }
     closeModal();
   };
