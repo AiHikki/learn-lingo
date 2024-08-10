@@ -27,7 +27,7 @@ export const GET = async request => {
 
     // Find the user by their email and populate the favoriteTeachers field
     const user = await User.findOne({ email: userEmail }).populate({
-      path: 'favoriteTeachers',
+      path: 'favorites',
       match: buildFilter(language, level, price), // Apply filter to favorite teachers
     });
 
@@ -35,7 +35,7 @@ export const GET = async request => {
       return new Response('User not found', { status: 404 });
     }
 
-    const filteredFavoriteTeachers = user.favoriteTeachers || [];
+    const filteredFavoriteTeachers = user.favorites || [];
     const totalCount = filteredFavoriteTeachers.length;
     const totalPages = Math.ceil(totalCount / limit);
 

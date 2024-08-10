@@ -28,6 +28,16 @@ export const register = async values => {
       password,
       redirect: false,
     });
+
+    if (signInResult?.error) {
+      return {
+        error: 'Failed to sign in after registration',
+      };
+    }
+
+    return {
+      success: true,
+    };
   } catch (e) {
     console.log(e);
   }

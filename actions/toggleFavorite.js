@@ -15,15 +15,15 @@ export const toggleFavorite = async (userEmail, teacherId) => {
       throw new Error('User not found');
     }
 
-    // Check if the teacher's ID is in the user's favoriteTeachers list
-    const isFavorite = user.favoriteTeachers.includes(teacherId);
+    // Check if the teacher's ID is in the user's favorites list
+    const isFavorite = user.favorites.includes(teacherId);
 
     if (isFavorite) {
       // If the teacher is already a favorite, remove them from the list
-      user.favoriteTeachers.pull(teacherId);
+      user.favorites.pull(teacherId);
     } else {
       // If the teacher is not a favorite, add them to the list
-      user.favoriteTeachers.push(teacherId);
+      user.favorites.push(teacherId);
     }
 
     // Save the updated user document

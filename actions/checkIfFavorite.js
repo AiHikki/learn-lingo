@@ -15,8 +15,8 @@ export const checkIfFavorite = async (userEmail, teacherId) => {
       throw new Error('User not found');
     }
 
-    // Check if the teacher's ID is in the user's favoriteTeachers list
-    const isFavorite = user.favoriteTeachers.includes(teacherId);
+    // Check if the teacher's ID is in the user's favorites list
+    const isFavorite = user.favorites.includes(teacherId);
 
     // Return true if the teacher is in the favorites, otherwise false
     return isFavorite;
