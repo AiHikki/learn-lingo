@@ -1,7 +1,7 @@
 'use server';
 
-import { connectDB } from '@/lib/mongodb';
-import User from '@/models/User';
+import { connectDB } from 'lib/mongodb';
+import User from 'models/user';
 
 export const checkIfFavorite = async (userEmail, teacherId) => {
   try {
