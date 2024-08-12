@@ -6,11 +6,11 @@ import Filters from '@/components/Filters';
 import TeachersList from '@/components/TeachersList';
 import { fetchFavoriteTeachers } from 'lib/operations';
 import { useSession } from 'next-auth/react';
-import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { redirect, usePathname } from 'next/navigation';
+import { useEffect, useLayoutEffect, useState } from 'react';
 
 const FavoriteTeachers = () => {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const [teachers, setTeachers] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
@@ -22,6 +22,12 @@ const FavoriteTeachers = () => {
     price: '',
   });
   const pathname = usePathname();
+
+  useLayoutEffect(() => {
+    if (status === 'unauthenticated') {
+      redirect('/');
+    }
+  }, [status]);
 
   useEffect(() => {
     if (pathname.startsWith('/favorites')) {

@@ -14,6 +14,9 @@ export const metadata = {
   title: 'LearnLingo',
   description:
     'Elevate your language proficiency to new heights by connecting with highly qualified and experienced tutors.',
+  icons: {
+    icon: '/favicon.svg',
+  },
 };
 
 export default function RootLayout({ children }) {
